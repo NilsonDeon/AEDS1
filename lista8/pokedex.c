@@ -4,8 +4,8 @@
 
 
 int main(){
-    int quant;
-    char **meus_pokemons, nome[30];
+    int quant, len;
+    char **meus_pokemons = NULL, nome[30];
 
     printf("Quantos pokemons voce possui? ");
     scanf("%d", &quant);
@@ -16,12 +16,17 @@ int main(){
     {
         printf("Digite o nome do Pokemon: ");
         scanf("%s", nome);
+        len = strlen(nome);
+        meus_pokemons[i] = (char *) realloc(meus_pokemons, len * (sizeof(char)));
 
-        int len = strlen(nome);
+        for (int j = 0; j < len; j++){
+            meus_pokemons[i][j] = nome[j];
 
-        meus_pokemons = (char *) malloc(len * (sizeof(char)));
-        
+            printf("%c", meus_pokemons[i][j]);
+        } 
+        printf("\n");
     }
+    
     
 
     return 0;
