@@ -2,6 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 
+#define ERRO -1
+
+int encontra_nome(char **lista, char *nome){
+
+    
+}
 
 int main(){
     int quant, len;
@@ -21,13 +27,8 @@ int main(){
 
         for (int j = 0; j < len; j++){
             meus_pokemons[i][j] = nome[j];
-
-            printf("%c", meus_pokemons[i][j]);
         } 
-        printf("\n");
     }
-    
-    
 
     return 0;
 }
