@@ -44,8 +44,8 @@ void regComp(compromisso registro[], int cont)
 
 void listTComp(compromisso registro[], int cont)
 {
-    for (int i = 0; i <= cont; i++)
-    { // printa todas os compromissos
+    for (int i = 0; i <= cont; i++){ // printa todas os compromissos
+     
         printf("\nDia: %i/%i/%i\n",
                registro[cont].data.dia,
                registro[cont].data.mes,
@@ -62,43 +62,55 @@ void listTComp(compromisso registro[], int cont)
     }
 }
 
-void listMes(compromisso registro[], int cont, int val)
-{
-   
-}
+void listMes(compromisso registro[], int cont, int mes){
+    for (int i = 0; i < cont; i++){
+        if (registro[i].data.mes == mes){ // verifica compromiços com mesmo mes
+            printf("\nCompromico: %s\n", registro[i].desc);
+            printf("Dia: %i/%i/%i\n",
+                   registro[i].data.dia,
+                   registro[i].data.mes,
+                   registro[i].data.ano);
 
-int main(void)
-{
-    int resp, cont = 0, val;
-    compromisso registro[5];
+            printf("Horario: %i/%i/%i\n",
+                   registro[i].hora.h,
+                   registro[i].hora.m,
+                   registro[i].hora.s);
 
-    while (1)
-    { // verifica o que o usuário quer fazer
-        printf("\n0 - sair\n");
-        printf("1 - Registrar compromisso\n");
-        printf("2 - Listar todos os compromissos\n");
-        printf("3 - Listar compromissos de um mês\n");
-        printf("Opcao desejada: ");
-        scanf("%d", &resp);
-
-        if (resp == 0)
-        {
-            break;
-        }
-        else if (resp == 1)
-        {
-            regComp(registro, cont++);
-        }
-        else if (resp == 2)
-        {
-            listTComp(registro, cont);
-        }
-        else if (resp == 3)
-        {
-            printf("Mes: ");
-            scanf("%i", &val);
-            listMes(registro, cont, val);
+            printf("\n");
         }
     }
-    return 0;
 }
+
+    int main(void){
+        int resp, cont = 0, val;
+        compromisso registro[5];
+
+        while (1){ // verifica o que o usuário quer fazer
+            printf("\n0 - sair\n");
+            printf("1 - Registrar compromisso\n");
+            printf("2 - Listar todos os compromissos\n");
+            printf("3 - Listar compromissos de um mês\n");
+            printf("Opcao desejada: ");
+            scanf("%d", &resp);
+
+            if (resp == 0){
+                break;
+            }
+            else if (resp == 1){
+            
+                regComp(registro, cont++);
+            }
+            else if (resp == 2){
+            
+                listTComp(registro, cont);
+            }
+            else if (resp == 3){
+           
+                printf("Mes: ");
+                scanf("%i", &val);
+                listMes(registro, cont, val);
+            }
+        }
+
+        return 0;
+    }
