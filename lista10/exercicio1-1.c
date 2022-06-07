@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct
-{
+typedef struct{
     char nome[9];
     char sobrenome[8];
     int mat;
@@ -37,6 +36,7 @@ int main(){
         fscanf(pfile,"%i", &matnota);
 
         while (1){ // loop infinito
+        /* printf("%d %d\n", matnota, alunos[j].mat); */
            if (matnota == alunos[j].mat){ // verificando se matriculas são iguais
                 // recebendo notas
                 fscanf(pfile,"%i %i %i %i", &alunos[j].notas[0], &alunos[j].notas[1], &alunos[j].notas[2], &alunos[j].notas[3]);
@@ -44,15 +44,9 @@ int main(){
             } 
             j++;        
         }
-        printf("%s %i %i %i %i %i\n", alunos[i].nome, alunos[i].mat, alunos[i].notas[0], alunos[i].notas[1],alunos[i].notas[2], alunos[i].notas[3]);
+        printf("%s %i %i %i %i %i\n", alunos[j].nome, alunos[j].mat, alunos[j].notas[0], alunos[j].notas[1], alunos[j].notas[2], alunos[j].notas[3]);
     }
     fclose(pfile); // fechando arquivo
-
-    /* 
-    Erro ao receber notas do:
-    - Alberto
-    - Bernado
-    */
 
     pfile = fopen("medias.txt", "a"); // criando arquivo (func tipo append)
     if (pfile == NULL){ // verificando se o arquivo foi aberto
