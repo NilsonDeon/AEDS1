@@ -91,41 +91,30 @@ void salvar(FILE *agenda, compromisso registro[], int cont){
 		exit(1);
 	}
 	
-	for (int i = 0; i < cont; i++){ // adiciona ao arquivo
-		fwrite(&registro[i].desc, sizeof(char), 1 ,agenda);
-		fwrite(&registro[i].data.dia, sizeof(int), 1 ,agenda);
-		fwrite(&registro[i].data.mes, sizeof(int), 1 ,agenda);
-		fwrite(&registro[i].data.ano, sizeof(int), 1 ,agenda);
-		fwrite(&registro[i].hora.h, sizeof(int), 1 ,agenda);
-		fwrite(&registro[i].hora.m, sizeof(int), 1 ,agenda);
-		fwrite(&registro[i].hora.s, sizeof(int), 1 ,agenda);
-	}
+	for (int i = 0; i < cont; i++){
+		fwrite(&registro[i], sizeof(compromisso), 1 ,agenda); // escreve conteúdo em um arquivo .bin
+	}	
     
     printf("\nArquivo salvo com sucesso\n");
 	fclose(agenda); // fecha o arquivo
 }
 
 void carregar(FILE *agenda, compromisso registro[], int cont){
-	int i = 0;
-	cont = 0;
+	cont = 1;
 	agenda = fopen("agenda.bin", "rb"); // lê o arquivo
 	if (agenda == NULL){ // verifica se abriu
 		printf("Erro ao abrir o arquivo");
 		exit(1);
 	}
-	
-	while(!feof(agenda)){
-		fread(&registro[i].desc, sizeof(char), 1 ,agenda);
-		fread(&registro[i].data.dia, sizeof(int), 1 ,agenda);
-		fread(&registro[i].data.mes, sizeof(int), 1 ,agenda);
-		fread(&registro[i].data.ano, sizeof(int), 1 ,agenda);
-		fread(&registro[i].hora.h, sizeof(int), 1 ,agenda);
-		fread(&registro[i].hora.m, sizeof(int), 1 ,agenda);
-		fread(&registro[i].hora.s, sizeof(int), 1 ,agenda);
-		i++;
+
+	while (!feof(agenda))
+	{
+		fread(&registro[(cont++)-1], sizeof(compromisso), 1, agenda); // carrega conteúdo
+		
 	}
-	
-	
+	printf("%i %i %i", registro[0].data.dia, registro[0].data.mes, registro[0].data.ano);
+
+
 	printf("\nArquivo carregado com sucesso\n");
 
 	fclose(agenda); // fecha o arquivo
